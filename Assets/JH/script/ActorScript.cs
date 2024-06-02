@@ -8,8 +8,8 @@ using static UnityEngine.GraphicsBuffer;
 public class ActorScript : MonoBehaviour
 {
 
-    protected float speed = 5.0f;
-    protected Vector3 targetPosition = new Vector3(0, 0, 0);
+    public float oneStep = 2.0f;
+    protected Vector3 targetPosition;
     protected Vector3 targetDirection;
     // Start is called before the first frame update
     void Start()
@@ -31,6 +31,7 @@ public class ActorScript : MonoBehaviour
 
     protected virtual void Initialize()
     {
+        targetPosition = new Vector3(0, 0.5f, 0);
         targetDirection = new Vector3(0, 0, 1);
     }
 
@@ -38,11 +39,11 @@ public class ActorScript : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.UpArrow))
         {
-            targetPosition = transform.position + (transform.forward * speed);
+            targetPosition = transform.position + (transform.forward * oneStep);
         }
         if (Input.GetKeyDown(KeyCode.DownArrow))
         {
-            targetPosition = transform.position + (transform.forward * speed * -1);
+            targetPosition = transform.position + (transform.forward * oneStep * -1);
         }
         if (Input.GetKeyDown(KeyCode.LeftArrow))
         {
@@ -72,7 +73,7 @@ public class ActorScript : MonoBehaviour
     {
         if (transform.position != position)
         {
-            float step = speed * Time.deltaTime;
+            float step = oneStep * Time.deltaTime;
             transform.position = Vector3.MoveTowards(transform.position, position, step);
         }
         return;
@@ -87,7 +88,7 @@ public class ActorScript : MonoBehaviour
             // Vector3 targetVector = targetDirection - transform.position;
 
             // The step size is equal to speed times frame time.
-            float singleStep = speed * Time.deltaTime;
+            float singleStep = oneStep * Time.deltaTime;
 
             // Rotate the forward vector towards the target direction by one step
             Vector3 newDirection = Vector3.RotateTowards(transform.forward, targetDirection, singleStep, 0.0f);
@@ -103,6 +104,6 @@ public class ActorScript : MonoBehaviour
 
     protected virtual void attack()
     {
-
+        // create collider for Attack collision
     }
 }

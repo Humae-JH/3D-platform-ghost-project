@@ -30,8 +30,8 @@ public class GhostActorScript : ActorScript
         base.Initialize();
         Anim = this.GetComponent<Animator>();
 
-        HP_text = GameObject.Find("Canvas/HP").GetComponent<Text>();
-        HP_text.text = "HP " + HP.ToString();
+        //HP_text = GameObject.Find("Canvas/HP").GetComponent<Text>();
+        //HP_text.text = "HP " + HP.ToString();
 
     }
 
@@ -46,6 +46,8 @@ public class GhostActorScript : ActorScript
     {
         Anim.CrossFade(AttackState, 0.1f, 0, 0);
     }
+
+
 
     protected override void ControlMotion()
     {
