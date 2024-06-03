@@ -25,6 +25,11 @@ public class GoalScript : MonoBehaviour
         }
     }
 
+    private void OnTriggerExit(Collider other)
+    {
+        winFlag = false;
+    }
+
     public bool isWin()
     {
         return winFlag;
