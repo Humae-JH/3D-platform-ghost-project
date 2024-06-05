@@ -23,11 +23,13 @@ public class GhostActorScript : ActorScript
     private int HP = maxHP;
     private Text HP_text;
 
+    protected BaseAttack attackScript;
 
     // Start is called before the first frame update
     void Start()
     {
         base.Initialize();
+        attackScript = gameObject.AddComponent<BaseAttack>();
         Anim = this.GetComponent<Animator>();
 
         //HP_text = GameObject.Find("Canvas/HP").GetComponent<Text>();
@@ -38,18 +40,25 @@ public class GhostActorScript : ActorScript
     // Update is called once per frame
     void Update()
     {
-        ControlMotion();
-        base.UpdateMotionState();
+        //ControlMotion();
+        UpdateMotionState();
     }
 
-    private void Attack()
+    public override void Attack()
     {
         Anim.CrossFade(AttackState, 0.1f, 0, 0);
+        attackScript.Attack();
+    }
+
+    protected override void UpdateMotionState()
+    {
+        base.UpdateMotionState();
+        attackScript.setAttackCollider(gameObject.transform.position + (gameObject.transform.forward * oneStep));
     }
 
 
 
-    protected override void ControlMotion()
+    /*protected override void ControlMotion()
     {
         base.ControlMotion();
 
@@ -58,5 +67,5 @@ public class GhostActorScript : ActorScript
             Attack();
         }
         return;
-    }
+    }*/
 }

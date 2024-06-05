@@ -1,6 +1,7 @@
 using Sample;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq.Expressions;
 using UnityEditor.Rendering;
 using UnityEngine;
 using static UnityEngine.GraphicsBuffer;
@@ -11,6 +12,11 @@ public class ActorScript : MonoBehaviour
     public float oneStep = 2.0f;
     protected Vector3 targetPosition;
     protected Vector3 targetDirection;
+    protected float flickTime = 2.0f;
+    protected float timeBuffer;
+    protected bool isDamaged = false;
+    public int HP = 1;
+    public Object Renderer;
     // Start is called before the first frame update
     void Start()
     {
@@ -20,8 +26,8 @@ public class ActorScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
-        ControlMotion();
+        // update targetPosition, targetDirection
+        //ControlMotion();
 
         // Update movement
         // Control movement through targetPosition and targetDirection
@@ -31,11 +37,27 @@ public class ActorScript : MonoBehaviour
 
     protected virtual void Initialize()
     {
-        targetPosition = new Vector3(0, 0.5f, 0);
-        targetDirection = new Vector3(0, 0, 1);
+        targetPosition = gameObject.transform.position;
+        targetDirection = gameObject.transform.forward;
+        timeBuffer = 0.0f;
     }
 
-    protected virtual void ControlMotion()
+    public void setTargetPosition(Vector3 newPosition)
+    {
+        this.targetPosition = newPosition;
+    }
+
+    public Vector3 getTargetPosition() {  return targetPosition; }
+
+    public void setTargetDirection(Vector3 newDirection)
+    {
+        this.targetDirection = newDirection;
+    }
+
+    public Vector3 getTargetDirection() { return this.targetDirection; }
+
+
+    /*protected virtual void ControlMotion()
     {
         if (Input.GetKeyDown(KeyCode.UpArrow))
         {
@@ -61,12 +83,13 @@ public class ActorScript : MonoBehaviour
 
 
         return;
-    }
+    }*/
     
     protected virtual void UpdateMotionState()
     {
         Move(targetPosition);
         Turn(targetDirection);
+        if (isDamaged) { this.Damaged(); }
     }
 
     protected virtual void Move(Vector3 position)
@@ -102,8 +125,35 @@ public class ActorScript : MonoBehaviour
         }
     }
 
-    protected virtual void attack()
+    public virtual void Attack()
     {
         // create collider for Attack collision
+    }
+
+    public virtual void Damaged()
+    {
+        this.isDamaged = true;
+        timeBuffer = timeBuffer + Time.deltaTime;
+        if (timeBuffer < this.flickTime)
+        {
+            this.flickering(timeBuffer);
+        }
+        else
+        {
+            isDamaged = false;
+            this.HP = this.HP - 1;
+            if (this.HP <= 0)
+            {
+                Destroy(gameObject);
+            }
+        }
+
+    }
+
+    protected virtual void flickering(float timeBuffer)
+    {
+        // you can override this function for every new objects.
+        float frequency = (Mathf.Sin(timeBuffer * Mathf.PI * 2) + 1) / 2;
+        gameObject.GetComponent<MeshRenderer>().materials[0].color = new Color(1, 1, 1, frequency);
     }
 }
