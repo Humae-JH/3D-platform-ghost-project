@@ -811,6 +811,12 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 409960186}
   m_PrefabAsset: {fileID: 0}
+--- !u!23 &1225915109 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 23167052619837076, guid: 881bb6ae806c1b74284970a42224d2ea,
+    type: 3}
+  m_PrefabInstance: {fileID: 409960186}
+  m_PrefabAsset: {fileID: 0}
 --- !u!65 &1225915111
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -846,6 +852,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   oneStep: 2
   HP: 1
+  Renderer: {fileID: 1225915109}
 --- !u!1 &1243551665 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 2360745697493351636, guid: b5a3e71e917ba8b4f9bda54a282ed15c,
