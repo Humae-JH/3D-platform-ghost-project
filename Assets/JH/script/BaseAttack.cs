@@ -12,6 +12,15 @@ public class BaseAttack : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        initialize();
+    }
+
+    /*
+     * void initialize()
+     * set collider for attack
+     */
+    protected virtual void initialize()
+    {
         colliderObject = new GameObject[colliderCnt];
         for (int i = 0; i < colliderCnt; i++)
         {
@@ -20,7 +29,7 @@ public class BaseAttack : MonoBehaviour
             colliderObject[i].GetComponent<BoxCollider>().enabled = true;
             colliderObject[i].GetComponent<BoxCollider>().isTrigger = true;
             colliderObject[i].transform.parent = gameObject.transform;
-            
+
         }
     }
 
@@ -58,11 +67,13 @@ public class BaseAttack : MonoBehaviour
 
         if (collision.gameObject.tag == "Player")
         {
-
+            Debug.Log("collision object : " + collision.transform.name);
+            target = collision;
         }
         else if (collision.gameObject.tag == "Enemy")
         {
-
+            Debug.Log("collision object : " + collision.transform.name);
+            target = collision;
         }
         else if (collision.gameObject.tag == "Obstacle")
         {
