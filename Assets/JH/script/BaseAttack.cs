@@ -42,8 +42,14 @@ public class BaseAttack : MonoBehaviour
 
     public virtual void Attack()
     {
-        Debug.Log("target collision : " + target);
-        target.GetComponent<ActorScript>().Damaged();
+
+        if (target != null)
+        {
+
+            Debug.Log("target collision : " + target);
+            target.GetComponent<ActorScript>().Damaged();
+        }
+
     }
 
     private void OnTriggerStay(Collider collision) 

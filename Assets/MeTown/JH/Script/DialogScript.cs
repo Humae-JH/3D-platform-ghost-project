@@ -124,7 +124,7 @@ public class DialogScript : MonoBehaviour
             {
                 this.changeArrowTransparency(0.5f);
             }
-            Debug.Log("time : " + time + " sin(time) " + Mathf.Sin(time));
+            //Debug.Log("time : " + time + " sin(time) " + Mathf.Sin(time));
             time += Time.deltaTime;
             yield return null;
         }
