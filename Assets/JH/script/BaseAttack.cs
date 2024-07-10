@@ -67,8 +67,8 @@ public class BaseAttack : MonoBehaviour
 
         if (collision.gameObject.tag == "Player")
         {
-            Debug.Log("collision object : " + collision.transform.name);
-            target = collision;
+            //Debug.Log("collision object : " + collision.transform.name);
+            //target = collision;
         }
         else if (collision.gameObject.tag == "Enemy")
         {

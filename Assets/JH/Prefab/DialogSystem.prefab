@@ -218,7 +218,8 @@ MonoBehaviour:
   m_text: 
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 0f5d8fd0ccbb8e649bdd26c7796be66c, type: 2}
-  m_sharedMaterial: {fileID: -7595140477503380113, guid: 0f5d8fd0ccbb8e649bdd26c7796be66c, type: 2}
+  m_sharedMaterial: {fileID: -7595140477503380113, guid: 0f5d8fd0ccbb8e649bdd26c7796be66c,
+    type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -258,15 +259,17 @@ MonoBehaviour:
   m_lineSpacingMax: 0
   m_paragraphSpacing: 0
   m_charWidthMaxAdj: 0
-  m_enableWordWrapping: 1
+  m_TextWrappingMode: 1
   m_wordWrappingRatios: 0.4
   m_overflowMode: 0
   m_linkedTextComponent: {fileID: 0}
   parentLinkedComponent: {fileID: 0}
   m_enableKerning: 1
+  m_ActiveFontFeatures: 6e72656b
   m_enableExtraPadding: 0
   checkPaddingRequired: 0
   m_isRichText: 1
+  m_EmojiFallbackSupport: 1
   m_parseCtrlCharacters: 1
   m_isOrthographic: 1
   m_isCullingEnabled: 0
@@ -435,9 +438,8 @@ MonoBehaviour:
     textDialogue: {fileID: 2903095737567221615}
     ImageDialog: {fileID: 40020038172869790}
     objectArrow: {fileID: 7811707712201730941}
-  dialogue:
-  - "\uC557! \uC57C\uC0DD\uC758 ___ \uAC00 \uB098\uD0C0\uB0AC\uB2E4!"
-  - 1
+    Panel: {fileID: 1385106066548649990}
+  dialogues: []
 --- !u!1 &7811707712201730941
 GameObject:
   m_ObjectHideFlags: 0

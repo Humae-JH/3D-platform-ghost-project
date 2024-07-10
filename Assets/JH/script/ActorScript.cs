@@ -134,19 +134,14 @@ public class ActorScript : MonoBehaviour
     {
         this.isDamaged = true;
         timeBuffer = timeBuffer + Time.deltaTime;
-        if (timeBuffer < this.flickTime)
+
+        isDamaged = false;
+        this.HP = this.HP - 1;
+        if (this.HP <= 0)
         {
-            this.flickering(timeBuffer);
+            Destroy(gameObject);
         }
-        else
-        {
-            isDamaged = false;
-            this.HP = this.HP - 1;
-            if (this.HP <= 0)
-            {
-                Destroy(gameObject);
-            }
-        }
+
 
     }
 

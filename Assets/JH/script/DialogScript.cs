@@ -12,6 +12,7 @@ public struct Speaker
     public TextMeshProUGUI textDialogue;
     public GameObject ImageDialog;
     public GameObject objectArrow;
+    public GameObject Panel;
 }
 
 
@@ -27,6 +28,7 @@ public class DialogScript : MonoBehaviour
     protected int dialogIndex = 0;
     protected bool isActivate = false;
     protected bool isPrinting = false;
+    protected bool isWaiting = false;
     protected int printDialogIndex = 0;
 
     protected Vector3 arrowPosition = Vector3.zero;
@@ -42,7 +44,13 @@ public class DialogScript : MonoBehaviour
     void Update()
     {
 
-
+        if (isActivate)
+        {
+            if (Input.GetMouseButtonDown(0))
+            {
+                nextDialogue();
+            }
+        }
     }
 
     public void initiateDialogue()
@@ -50,6 +58,7 @@ public class DialogScript : MonoBehaviour
         speaker.textDialogue.gameObject.SetActive(true);
         speaker.ImageDialog.gameObject.SetActive(true);
         speaker.objectArrow.gameObject.SetActive(true);
+        speaker.Panel.gameObject.SetActive(true);
 
         dialogIndex = 0;
         isActivate = true;
@@ -61,6 +70,8 @@ public class DialogScript : MonoBehaviour
         speaker.textDialogue.gameObject.SetActive(false);
         speaker.ImageDialog.gameObject.SetActive(false);
         speaker.objectArrow.gameObject.SetActive(false);
+        speaker.Panel.gameObject.SetActive(false);
+        stopArrowEffect();
     }
 
     public IEnumerator printDialogue()
@@ -72,7 +83,7 @@ public class DialogScript : MonoBehaviour
             //yield return new WaitForSeconds(0.1f);
         }
 
-        while (printDialogIndex < dialogues[dialogIndex].Length)
+        while (printDialogIndex <= dialogues[dialogIndex].Length)
         {
             speaker.textDialogue.text = dialogues[dialogIndex].Substring(0, printDialogIndex);
             printDialogIndex++;
@@ -111,7 +122,7 @@ public class DialogScript : MonoBehaviour
     {
         speaker.objectArrow.SetActive(true);
         float time = 0.0f;
-
+        isWaiting = true;
         while (true)
         {
             float tmp = this.stepFunction(Mathf.Sin(time * Mathf.PI * arrowSpeed));
@@ -128,7 +139,7 @@ public class DialogScript : MonoBehaviour
             time += Time.deltaTime;
             yield return null;
         }
-        stopArrowEffect();
+
         yield break;
     }
 
@@ -136,13 +147,17 @@ public class DialogScript : MonoBehaviour
     {
         StopCoroutine(startArrowEffect());
         speaker.objectArrow.SetActive(false);
+        isWaiting = false;
     }
 
     public void nextDialogue()
     {
-        if (printDialogIndex < dialogues.Length)
+        if (dialogIndex < dialogues.Length -1)
         {
-            printDialogIndex++;
+            dialogIndex++;
+            printDialogIndex = 0;
+            StartCoroutine(printDialogue());
+
         }
         else
         {

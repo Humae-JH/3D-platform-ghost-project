@@ -57,7 +57,6 @@ public class GhostActorScript : ActorScript
     }
 
 
-
     /*protected override void ControlMotion()
     {
         base.ControlMotion();
