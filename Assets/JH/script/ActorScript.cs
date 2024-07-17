@@ -9,7 +9,7 @@ using static UnityEngine.GraphicsBuffer;
 public class ActorScript : MonoBehaviour
 {
 
-    public float oneStep = 2.0f;
+    public float oneStep = 0.0f;
     protected Vector3 targetPosition;
     protected Vector3 targetDirection;
     protected float flickTime = 2.0f;
@@ -40,6 +40,8 @@ public class ActorScript : MonoBehaviour
         targetPosition = gameObject.transform.position;
         targetDirection = gameObject.transform.forward;
         timeBuffer = 0.0f;
+        oneStep = 2.0f;
+        flickTime = 2.0f;
     }
 
     public void setTargetPosition(Vector3 newPosition)

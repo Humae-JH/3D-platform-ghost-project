@@ -566,6 +566,12 @@ Transform:
   - {fileID: 652047585}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &607078520 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2725162522574613967, guid: b4235d9df06b17d498218a340b679137,
+    type: 3}
+  m_PrefabInstance: {fileID: 1456945766}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &641773727 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2357988161223005384, guid: 80134143588e09c4892e00879262fce3,
@@ -704,7 +710,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 12f3f77ff1f886b42be78b2d4a598191, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  margin: 0.1
+  margin: 1
 --- !u!1 &961739749
 GameObject:
   m_ObjectHideFlags: 0
@@ -1034,12 +1040,6 @@ MonoBehaviour:
   oneStep: 2
   HP: 1
   Renderer: {fileID: 1225915109}
---- !u!1 &1243551665 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 2360745697493351636, guid: b5a3e71e917ba8b4f9bda54a282ed15c,
-    type: 3}
-  m_PrefabInstance: {fileID: 1012654099}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &1246644987 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7530913732543248565, guid: d45e9e9837680e8448990bc088ba7b07,
@@ -1122,15 +1122,30 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1649289380087664806, guid: b4235d9df06b17d498218a340b679137,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2725162522574613967, guid: b4235d9df06b17d498218a340b679137,
         type: 3}
       propertyPath: m_Name
       value: puppet_kid
       objectReference: {fileID: 0}
+    - target: {fileID: 7625657256488312276, guid: b4235d9df06b17d498218a340b679137,
+        type: 3}
+      propertyPath: m_UseGravity
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7625657256488312276, guid: b4235d9df06b17d498218a340b679137,
+        type: 3}
+      propertyPath: m_IsKinematic
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 9084458181851230346, guid: b4235d9df06b17d498218a340b679137,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.11
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 9084458181851230346, guid: b4235d9df06b17d498218a340b679137,
         type: 3}
@@ -1140,27 +1155,27 @@ PrefabInstance:
     - target: {fileID: 9084458181851230346, guid: b4235d9df06b17d498218a340b679137,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 10.15
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 9084458181851230346, guid: b4235d9df06b17d498218a340b679137,
         type: 3}
       propertyPath: m_LocalRotation.w
-      value: -0.047874935
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 9084458181851230346, guid: b4235d9df06b17d498218a340b679137,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 9084458181851230346, guid: b4235d9df06b17d498218a340b679137,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.9988533
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 9084458181851230346, guid: b4235d9df06b17d498218a340b679137,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 9084458181851230346, guid: b4235d9df06b17d498218a340b679137,
         type: 3}
@@ -1170,7 +1185,7 @@ PrefabInstance:
     - target: {fileID: 9084458181851230346, guid: b4235d9df06b17d498218a340b679137,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: 185.488
+      value: 180
       objectReference: {fileID: 0}
     - target: {fileID: 9084458181851230346, guid: b4235d9df06b17d498218a340b679137,
         type: 3}
@@ -1636,7 +1651,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8aeba9d662ec5854cb6db68bc5431606, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 1243551665}
+  player: {fileID: 607078520}
   grid: {fileID: 880395269}
 --- !u!4 &1598731857
 Transform:

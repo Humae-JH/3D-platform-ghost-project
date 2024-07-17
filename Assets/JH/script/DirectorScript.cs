@@ -6,7 +6,7 @@ using UnityEngine;
 public class DirectorScript : MonoBehaviour
 {
     public GameObject player;
-    protected GhostActorScript playerScript;
+    protected PuppetScript playerScript;
     public GameObject grid;
     protected GridScript gridScript;
     protected float oneStep;
@@ -15,7 +15,7 @@ public class DirectorScript : MonoBehaviour
     void Start()
     {
         gridScript = grid.GetComponent<GridScript>();
-        playerScript = player.GetComponent<GhostActorScript>();
+        playerScript = player.GetComponent<PuppetScript>();
         oneStep = playerScript.oneStep;
     }
 
