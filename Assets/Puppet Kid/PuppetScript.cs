@@ -15,7 +15,8 @@ public class PuppetScript : ActorScript
     private static readonly int Run = Animator.StringToHash("Run");
     protected float virticalSpeed = 0.0f;
     protected float horizontalSpeed = 0.0f;
-    protected static readonly float idleThreshold = 0.1f;
+    protected static readonly float idleThreshold = 0.00001f;
+    protected Transform centerTransform;
     protected bool isRun = false;
     protected float prevX = 0.0f;
     protected float prevY = 0.0f;
@@ -24,9 +25,11 @@ public class PuppetScript : ActorScript
     void Start()
     {
         base.Initialize();
-        prevX = this.gameObject.transform.position.x;
-        prevY = this.gameObject.transform.position.y;
-        prevZ = this.gameObject.transform.position.z;
+        centerTransform = this.gameObject.transform.Find("center");
+        prevX = centerTransform.transform.position.x;
+        prevY = centerTransform.transform.position.y;
+        prevZ = centerTransform.transform.position.z;
+
         animator = this.gameObject.GetComponent<Animator>();
         Rigidbody = this.gameObject.GetComponent<Rigidbody>();
         Rigidbody.constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationZ;
@@ -35,9 +38,9 @@ public class PuppetScript : ActorScript
     // Update is called once per frame
     void Update()
     {
-        float deltaX = this.gameObject.transform.position.x - prevX;
-        float deltaY = this.gameObject.transform.position.y - prevY;
-        float deltaZ = this.gameObject.transform.position.z - prevZ;
+        float deltaX = centerTransform.transform.position.x - prevX;
+        float deltaY = centerTransform.transform.position.y - prevY;
+        float deltaZ = centerTransform.transform.position.z - prevZ;
         virticalSpeed = new Vector2(Rigidbody.velocity.x, Rigidbody.velocity.z).magnitude;
         horizontalSpeed = Mathf.Abs(Rigidbody.velocity.y);
         Debug.Log("virtualSpeed" + virticalSpeed + "horizontalSpeed" + horizontalSpeed);
@@ -45,9 +48,9 @@ public class PuppetScript : ActorScript
             changeAnimation(virticalSpeed, horizontalSpeed, isRun);
         }
         UpdateMotionState();
-        prevX = this.gameObject.transform.position.x;
-        prevY = this.gameObject.transform.position.y;
-        prevZ = this.gameObject.transform.position.z;
+        prevX = centerTransform.transform.position.x;
+        prevY = centerTransform.transform.position.y;
+        prevZ = centerTransform.transform.position.z;
         Debug.Log("target position : " + this.targetPosition);
     }
 
@@ -55,19 +58,23 @@ public class PuppetScript : ActorScript
     {
         if (horizontalSpeed > idleThreshold)
         {
-            animator.CrossFade(Jump, 1);
+            animator.SetBool("isJump", true);
         }
         else if (isRun == false && virticalSpeed > idleThreshold)
         {
-            animator.CrossFade(Walk, 1);
+            animator.SetBool("isWalk", true);
+            animator.SetBool("isRun", false);
         }
         else if (isRun == true && virticalSpeed > idleThreshold)
         {
-            animator.CrossFade(Run, 1);
+            animator.SetBool("isWalk", true);
+            animator.SetBool("isRun", true);
         }
         else
         {
-            animator.CrossFade(IdleState, 1);
+            animator.SetBool("isWalk", false);
+            animator.SetBool("isRun", false);
+            animator.SetBool("isJump", false);
         }
         return;
     }

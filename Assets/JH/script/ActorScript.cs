@@ -14,6 +14,7 @@ public class ActorScript : MonoBehaviour
     protected Vector3 targetDirection;
     protected float flickTime = 2.0f;
     protected float timeBuffer;
+    protected float speed = 5.0f;
     protected bool isDamaged = false;
     public int HP = 1;
     public Object Renderer;
@@ -98,7 +99,7 @@ public class ActorScript : MonoBehaviour
     {
         if (transform.position != position)
         {
-            float step = oneStep * Time.deltaTime;
+            float step = oneStep * Time.deltaTime * speed;
             transform.position = Vector3.MoveTowards(transform.position, position, step);
         }
         return;
