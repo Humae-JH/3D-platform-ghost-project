@@ -64,8 +64,9 @@ public class FallingRockScript : BaseAttack
         if (target != null)
         {
 
-            Debug.Log("target collision : " + target);
-            target.GetComponent<GhostActorScript>().Damaged();
+            Debug.Log("Rocks target collision : " + target);
+            target.GetComponent<ActorScript>().Damaged();
+            target = null;
         }
         // stop flowing effect and destroy
 
@@ -121,5 +122,13 @@ public class FallingRockScript : BaseAttack
             GameObject.Destroy(rocks[i].gameObject);
         }
         GameObject.Destroy(this.gameObject);
+    }
+
+    public void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.tag == "Player")
+        {
+            target = other;
+        }
     }
 }

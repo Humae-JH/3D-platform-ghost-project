@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class DirectorScript : MonoBehaviour
 {
@@ -23,6 +24,10 @@ public class DirectorScript : MonoBehaviour
     void Update()
     {
         getInput();
+        if (player == null)
+        {
+            SceneManager.LoadScene("GameOverScene");
+        }
     }
 
     protected void getInput()

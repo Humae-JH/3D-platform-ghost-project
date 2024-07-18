@@ -41,7 +41,7 @@ public class PuppetScript : ActorScript
         float deltaX = centerTransform.transform.position.x - prevX;
         float deltaY = centerTransform.transform.position.y - prevY;
         float deltaZ = centerTransform.transform.position.z - prevZ;
-        virticalSpeed = new Vector2(Rigidbody.velocity.x, Rigidbody.velocity.z).magnitude;
+        virticalSpeed = new Vector2(Rigidbody.velocity.x / Time.deltaTime, Rigidbody.velocity.z / Time.deltaTime).magnitude;
         horizontalSpeed = Mathf.Abs(Rigidbody.velocity.y);
         Debug.Log("virtualSpeed" + virticalSpeed + "horizontalSpeed" + horizontalSpeed);
         if ( virticalSpeed > idleThreshold || horizontalSpeed > idleThreshold) {
